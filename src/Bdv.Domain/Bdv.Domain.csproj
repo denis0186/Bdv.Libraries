@@ -4,6 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Denis B.V.</Authors>
+    <Company>BDV</Company>
+    <Description>Domain library</Description>
+    <RepositoryUrl>https://github.com/denis0186/Bdv.Libraries</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
