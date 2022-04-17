@@ -19,4 +19,3 @@ jobs:
         mkdir __out
         dotnet pack -c Release -o __out -p:PackageVersion=6.0.${{ github.run_number }} --no-restore
         dotnet nuget push ".\__out\*.nupkg" --skip-duplicate --no-symbols --source https://nuget.pkg.github.com/denis0186/index.json --api-key ${{ secrets.GITHUB_TOKEN }} 
-        rm __out
