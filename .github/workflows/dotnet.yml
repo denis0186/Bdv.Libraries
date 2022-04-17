@@ -19,5 +19,5 @@ jobs:
         dotnet nuget add source --username denis0186 --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/denis0186/index.json"
         mkdir __out
         dotnet pack -c Release -o __out --no-restore
-        dotnet nuget push ".\__out\*.nupkg" --skip-duplicate --no-symbols --source github -p:PackageVersion="6.0.${GITHUB_RUN_NUMBER}"
+        dotnet nuget push ".\__out\*.nupkg" --skip-duplicate --no-symbols --source github -p:PackageVersion=6.0.${{ github.run_number }}
         rm -rf __out
