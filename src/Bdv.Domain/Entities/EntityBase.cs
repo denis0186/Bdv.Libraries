@@ -6,6 +6,6 @@ namespace Bdv.Domain.Entities
     public abstract class EntityBase<TKey> : IEntity<TKey>
     {
         [Column("id")]
-        public TKey Id { get; set; }
+        public TKey Id { get; set; } = default!;
     }
 }

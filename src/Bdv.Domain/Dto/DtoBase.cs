@@ -7,6 +7,6 @@ namespace Bdv.Domain.Dto
         /// <summary>
         /// Record identifier
         /// </summary>
-        public TId Id { get; set; }
+        public TId Id { get; set; } = default!;
     }
 }

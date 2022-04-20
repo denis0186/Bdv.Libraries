@@ -5,16 +5,16 @@
         /// <summary>
         /// User e-mail
         /// </summary>
-        string Email { get; set; }
+        string? Email { get; set; }
 
         /// <summary>
         /// User phone number
         /// </summary>
-        string Phone { get; set; }
+        string? Phone { get; set; }
 
         /// <summary>
         /// User login
         /// </summary>
-        string Login { get; set; }
+        string? Login { get; set; }
     }
 }
