@@ -2,7 +2,7 @@
 
 namespace Bdv.Domain.Dto.Sso
 {
-    public record UserDto : DtoBase<int>, IUser
+    public record UserDto : DtoBase<Guid>, IUser
     {
         public string? Email { get; set; }
         public string? Phone { get; set; }
