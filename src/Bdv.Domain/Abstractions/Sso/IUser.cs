@@ -1,6 +1,6 @@
 ﻿namespace Bdv.Domain.Abstractions.Sso
 {
-    public interface IUser : IEntity<int>
+    public interface IUser : IEntity<Guid>
     {
         /// <summary>
         /// User e-mail
