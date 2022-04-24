@@ -1,13 +1,18 @@
 ﻿namespace Bdv.Domain.Dto.Sso
 {
     /// <summary>
-    /// Token
+    /// Token pair
     /// </summary>
     public class TokenDto
     {
         /// <summary>
-        /// Token string
+        /// Access token string
         /// </summary>
-        public string Token { get; set; } = string.Empty;
+        public string AccessToken { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Refresh token string
+        /// </summary>
+        public string RefreshToken { get; set; } = string.Empty;
     }
 }
