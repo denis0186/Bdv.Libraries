@@ -2,7 +2,7 @@
 
 namespace Bdv.Domain.Dto
 {
-    public record DtoBase<TId> : IEntity<TId>
+    public record DtoBase<TId> : IEntity<TId> where  TId : struct
     {
         /// <summary>
         /// Record identifier

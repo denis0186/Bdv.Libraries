@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bdv.Domain.Entities
 {
-    public abstract class EntityBase<TKey> : IEntity<TKey>
+    public abstract class EntityBase<TKey> : IEntity<TKey> where TKey : struct
     {
         [Column("id")]
-        public TKey Id { get; set; } = default!;
+        public TKey Id { get; set; }
     }
 }

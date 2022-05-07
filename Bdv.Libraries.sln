@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bdv.DataAccess", "src\Bdv.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bdv.Redis", "src\Bdv.Redis\Bdv.Redis.csproj", "{02337F78-83BF-4019-9DD3-FF4706845BA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bdv.Authentication", "src\Bdv.Authentication\Bdv.Authentication.csproj", "{87ACD206-D476-435F-970B-D6C9E8D74D2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{02337F78-83BF-4019-9DD3-FF4706845BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02337F78-83BF-4019-9DD3-FF4706845BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02337F78-83BF-4019-9DD3-FF4706845BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87ACD206-D476-435F-970B-D6C9E8D74D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87ACD206-D476-435F-970B-D6C9E8D74D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87ACD206-D476-435F-970B-D6C9E8D74D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87ACD206-D476-435F-970B-D6C9E8D74D2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{18E84B56-C39A-4875-9C8D-B959D23F740B} = {603D9094-20E8-4E7E-8F99-3CA40D8F169B}
 		{38D43168-E25E-4858-87EF-D112DE581961} = {603D9094-20E8-4E7E-8F99-3CA40D8F169B}
 		{02337F78-83BF-4019-9DD3-FF4706845BA3} = {603D9094-20E8-4E7E-8F99-3CA40D8F169B}
+		{87ACD206-D476-435F-970B-D6C9E8D74D2D} = {603D9094-20E8-4E7E-8F99-3CA40D8F169B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B765C7B9-0932-422F-9A2B-E1F0353EDC8B}
