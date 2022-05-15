@@ -14,7 +14,7 @@ namespace Bdv.Common.Impl
 
         public ValueTask<RsaSecurityKey> GetPublicKeyAsync(string keyFile)
         {
-            return GetRsaSecurityKeyCoreAsync(keyFile, true);
+            return GetRsaSecurityKeyCoreAsync(keyFile, false);
         }
 
         private ValueTask<RsaSecurityKey> GetRsaSecurityKeyCoreAsync(string keyFile, bool includePrivateParameters)
