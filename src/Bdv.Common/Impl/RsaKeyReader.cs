@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
 
-namespace Bdv.Authentication.Impl
+namespace Bdv.Common.Impl
 {
     public class RsaKeyReader : IRsaKeyReader
     {

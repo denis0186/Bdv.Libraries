@@ -1,5 +1,6 @@
 ﻿using Bdv.Authentication.AuthenticationHandlers;
-using Bdv.Authentication.Impl;
+using Bdv.Common;
+using Bdv.Common.Impl;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bdv.Authentication.DependencyInjection

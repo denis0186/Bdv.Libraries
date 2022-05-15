@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 
-namespace Bdv.Authentication
+namespace Bdv.Common
 {
     public interface IRsaKeyReader
     {
