@@ -25,6 +25,7 @@ namespace Bdv.Authentication.Attributes
             if (context.HttpContext.User.Identity?.IsAuthenticated != true)
             {
                 context.Result = new UnauthorizedResult();
+                return;
             }
 
             var permissions = context.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Permissions")?.Value.Split(',');
