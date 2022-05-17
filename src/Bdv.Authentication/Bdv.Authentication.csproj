@@ -17,6 +17,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Bdv.Common\Bdv.Common.csproj" />
+	  <ProjectReference Include="..\Bdv.Domain\Bdv.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

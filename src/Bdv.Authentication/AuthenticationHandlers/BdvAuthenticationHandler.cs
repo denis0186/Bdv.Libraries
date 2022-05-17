@@ -44,10 +44,18 @@ namespace Bdv.Authentication.AuthenticationHandlers
                 ValidateIssuerSigningKey = true,
                 ValidIssuer = _tokenValidationSettings.Issuer,
                 IssuerSigningKey = await _rsaKeyReader.GetPublicKeyAsync(_tokenValidationSettings.RsaPublicKey),
+                ClockSkew = TimeSpan.Zero,
             };
 
-            var claimsPrincipal = _jwtHandler.ValidateToken(token, tokenValidationParameters, out _);
-            return AuthenticateResult.Success(new AuthenticationTicket(claimsPrincipal, Scheme.Name));
+            try
+            {
+                var claimsPrincipal = _jwtHandler.ValidateToken(token, tokenValidationParameters, out _);
+                return AuthenticateResult.Success(new AuthenticationTicket(claimsPrincipal, Scheme.Name));
+            }
+            catch (Exception ex)
+            {
+                return AuthenticateResult.Fail(ex);
+            }
         }
     }
 }

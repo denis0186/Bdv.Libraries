@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Bdv.Domain.Dto;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Text.Json;
 
 namespace Bdv.Authentication.Attributes
 {
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
+        private const string AUTHORIZATION_FAILED = "Authorization failed";
+
         public AuthorizeAttribute(string permission)
         {
             Permission = permission;
@@ -24,14 +28,33 @@ namespace Bdv.Authentication.Attributes
         {
             if (context.HttpContext.User.Identity?.IsAuthenticated != true)
             {
-                context.Result = new UnauthorizedResult();
+                context.Result = new ContentResult
+                {
+                    ContentType = "text/json",
+                    StatusCode = 401,
+                    Content = JsonSerializer.Serialize(new WebApiErrorDto
+                    {
+                        Message = AUTHORIZATION_FAILED,
+                        Error = "Not authenticated"
+                    }),
+                };
+
                 return;
             }
 
             var permissions = context.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Permissions")?.Value.Split(',');
             if (permissions?.Contains(Permission) != true)
             {
-                context.Result = new ContentResult { StatusCode = 403, Content = "" };
+                context.Result = new ContentResult
+                {
+                    ContentType = "text/json",
+                    StatusCode = 403,
+                    Content = JsonSerializer.Serialize(new WebApiErrorDto
+                    {
+                        Message = AUTHORIZATION_FAILED,
+                        Error = "No permission"
+                    }),
+                };
             }
         }
     }
