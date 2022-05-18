@@ -33,7 +33,7 @@ namespace Bdv.DataAccess.Impl.EntityFramework
             return DbContext.Set<TEntity>().Where(predicate).AsNoTracking().SingleOrDefaultAsync();
         }
 
-        public Task<TEntity?> GetAsync<TEntity, TKey>(TKey key)
+        public Task<TEntity?> GetByKeyAsync<TEntity, TKey>(TKey key)
             where TEntity : class, IEntity<TKey>
             where TKey : struct
         {
@@ -49,6 +49,13 @@ namespace Bdv.DataAccess.Impl.EntityFramework
             where TEntity : class, IEntity
         {
             return DbContext.Set<TEntity>().AsNoTracking();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllByKeysAsync<TEntity, TKey>(params TKey[] keys)
+            where TEntity : class, IEntity<TKey>
+            where TKey : struct
+        {
+            return await DbContext.Set<TEntity>().Where(x => keys.Contains(x.Id)).AsNoTracking().ToListAsync();
         }
     }
 }

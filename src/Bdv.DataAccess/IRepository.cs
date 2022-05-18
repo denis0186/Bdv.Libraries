@@ -50,7 +50,18 @@ namespace Bdv.DataAccess
         /// <typeparam name="TKey">Type of key</typeparam>
         /// <param name="key">Key</param>
         /// <returns></returns>
-        Task<TEntity?> GetAsync<TEntity, TKey>(TKey key)
+        Task<TEntity?> GetByKeyAsync<TEntity, TKey>(TKey key)
+            where TEntity : class, IEntity<TKey>
+            where TKey : struct;
+
+        /// <summary>
+        /// Get entities by keys
+        /// </summary>
+        /// <typeparam name="TEntity">Type of entity</typeparam>
+        /// <typeparam name="TKey">Type of key</typeparam>
+        /// <param name="keys">Keys</param>
+        /// <returns></returns>
+        Task<IEnumerable<TEntity>> GetAllByKeysAsync<TEntity, TKey>(params TKey[] keys)
             where TEntity : class, IEntity<TKey>
             where TKey : struct;
 
