@@ -18,7 +18,7 @@ namespace Bdv.Redis.Impl
             _db = _redis.GetDatabase();
         }
 
-        public async Task SetValueAsync<TValue>(string key, TValue value)
+        public async Task SetAsync<TValue>(string key, TValue value, TimeSpan? expiry = null)
             where TValue : class
         {
             if (value == null)
@@ -26,15 +26,15 @@ namespace Bdv.Redis.Impl
                 await _db.KeyDeleteAsync(key);
                 return;
             }
-            
+
             var redisValue = JsonSerializer.Serialize(value, _serializerOptions);
-            if (!await _db.StringSetAsync(key, redisValue))
+            if (!await _db.StringSetAsync(key, redisValue, expiry))
             {
                 throw new RedisException($"Redis key = {key} wasn't set");
             }
         }
 
-        public async Task<TValue?> GetValueAsync<TValue>(string key)
+        public async Task<TValue?> GetAsync<TValue>(string key)
             where TValue : class
         {
             var redisValue = await _db.StringGetAsync(key);

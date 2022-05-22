@@ -12,7 +12,7 @@
         /// <param name="key">Key</param>
         /// <param name="value">Value</param>
         /// <returns></returns>
-        Task SetValueAsync<TValue>(string key, TValue value)
+        Task SetAsync<TValue>(string key, TValue value, TimeSpan? expiry = null)
             where TValue : class;
 
         /// <summary>
@@ -21,7 +21,7 @@
         /// <typeparam name="TValue">Value type</typeparam>
         /// <param name="key">Key</param>
         /// <returns>Value</returns>
-        Task<TValue?> GetValueAsync<TValue>(string key)
+        Task<TValue?> GetAsync<TValue>(string key)
             where TValue : class;
     }
 }
