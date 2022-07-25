@@ -13,12 +13,11 @@ namespace Bdv.Libraries.Tests.Integration
 {
     public class Startup
     {
-        //public void ConfigureHost(IHostBuilder hostBuilder)
-        //{
-        //    hostBuilder
-        //        .ConfigureHostConfiguration(
-        //        builder => builder.AddConfiguration(new ConfigurationBuilder().AddJsonFile());
-        //}
+        public void ConfigureHost(IHostBuilder hostBuilder)
+        {
+            hostBuilder
+                .ConfigureHostConfiguration(builder => builder.AddJsonFile("testssettings.json"));
+        }
 
         public void ConfigureServices(IServiceCollection services, HostBuilderContext hostBuilderContext)
         {
