@@ -3,7 +3,7 @@
     /// <summary>
     /// Token pair
     /// </summary>
-    public class TokenDto
+    public record TokenDto
     {
         /// <summary>
         /// Access token string

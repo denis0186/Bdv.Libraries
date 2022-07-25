@@ -1,6 +1,6 @@
 ﻿namespace Bdv.Domain.Dto
 {
-    public class WebApiErrorDto
+    public record WebApiErrorDto
     {
         public string? Message { get; set; }
         
