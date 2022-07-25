@@ -19,7 +19,6 @@ namespace Bdv.Redis.Impl
         }
 
         public async Task SetAsync<TValue>(string key, TValue value, TimeSpan? expiry = null)
-            where TValue : class
         {
             if (value == null)
             {
@@ -35,7 +34,6 @@ namespace Bdv.Redis.Impl
         }
 
         public async Task<TValue?> GetAsync<TValue>(string key)
-            where TValue : class
         {
             var redisValue = await _db.StringGetAsync(key);
             if (!redisValue.HasValue)

@@ -12,8 +12,7 @@
         /// <param name="key">Key</param>
         /// <param name="value">Value</param>
         /// <returns></returns>
-        Task SetAsync<TValue>(string key, TValue value, TimeSpan? expiry = null)
-            where TValue : class;
+        Task SetAsync<TValue>(string key, TValue value, TimeSpan? expiry = null);
 
         /// <summary>
         /// Get a value from redis cache by key
@@ -21,7 +20,6 @@
         /// <typeparam name="TValue">Value type</typeparam>
         /// <param name="key">Key</param>
         /// <returns>Value</returns>
-        Task<TValue?> GetAsync<TValue>(string key)
-            where TValue : class;
+        Task<TValue?> GetAsync<TValue>(string key);
     }
 }
