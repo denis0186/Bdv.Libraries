@@ -93,6 +93,39 @@ namespace Bdv.Libraries.Tests.Integration.Redis
             Assert.Null(value);
         }
 
+        [Theory]
+        [InlineData(1)]
+        [InlineData(10)]
+        [InlineData(100)]
+        [InlineData(1000)]
+        public async Task MultiplyIncrements(int count)
+        {
+            await _redisRepository.SetAsync("inc", 0d, TimeSpan.FromMinutes(1));
+            var tasks = Enumerable.Range(0, count).Select(i => _redisRepository.Incerement("inc")).ToArray();
+            await Task.WhenAll(tasks);
+            var result = await _redisRepository.GetAsync<double>("inc");
+
+            Assert.Equal(count, result);
+            Assert.Equal(count * (1 + count) / 2, tasks.Sum(x => x.Result));
+            
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(10)]
+        [InlineData(100)]
+        [InlineData(1000)]
+        public async Task MultiplyDecrements(int count)
+        {
+            await _redisRepository.SetAsync("inc", count, TimeSpan.FromMinutes(1));
+            var tasks = Enumerable.Range(0, count).Select(i => _redisRepository.Decrement("inc")).ToArray();
+            await Task.WhenAll(tasks);
+            var result = await _redisRepository.GetAsync<double>("inc");
+
+            Assert.Equal(0, result);
+            Assert.Equal(count * (count - 1) / 2, tasks.Sum(x => x.Result));
+        }
+
         struct TestStruct
         {
             public Guid Id { get; set; }

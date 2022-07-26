@@ -43,5 +43,15 @@ namespace Bdv.Redis.Impl
 
             return JsonSerializer.Deserialize<TValue>(redisValue.ToString());
         }
+
+        public Task<double> Incerement(string key, double value = 1)
+        {
+            return _db.StringIncrementAsync(key, value);
+        }
+
+        public Task<double> Decrement(string key, double value = 1)
+        {
+            return _db.StringDecrementAsync(key, value);
+        }
     }
 }

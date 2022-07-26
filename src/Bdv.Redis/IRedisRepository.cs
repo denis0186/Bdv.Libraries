@@ -21,5 +21,21 @@
         /// <param name="key">Key</param>
         /// <returns>Value</returns>
         Task<TValue?> GetAsync<TValue>(string key);
+
+        /// <summary>
+        /// Increment a value from redis cache by key
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="value">Increment value</param>
+        /// <returns>Incremented value</returns>
+        Task<double> Incerement(string key, double value = 1);
+
+        /// <summary>
+        /// Decrement a value from redis cache by key
+        /// </summary>
+        /// <param name="key">Key</param>
+        /// <param name="value">Deccrement value</param>
+        /// <returns>Decremented value</returns>
+        Task<double> Decrement(string key, double value = 1);
     }
 }
