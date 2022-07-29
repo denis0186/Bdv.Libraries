@@ -7,46 +7,48 @@ namespace Bdv.DataAccess.Impl.EntityFramework
     public class DbContextCrudService<TDbContext> : ICrudService
         where TDbContext : DbContext
     {
-        public DbContextCrudService(TDbContext dbContext)
-        {
-            DbContext = dbContext;
-        }
+        private readonly IDbContextFactory<TDbContext> _dbContextFactory;
 
-        protected TDbContext DbContext { get; }
+        public DbContextCrudService(IDbContextFactory<TDbContext> dbContextFactory)
+        {
+            _dbContextFactory = dbContextFactory;
+        }
 
         public async Task<IDbTransaction> BeginTransactionAsync()
         {
-            var transaction = await DbContext.Database.GetDbConnection().BeginTransactionAsync();
-            await DbContext.Database.UseTransactionAsync(transaction);
-            return transaction;
+            throw new NotImplementedException();
         }
 
-        public Task UpdateAsync<TEntity>(TEntity entity)
+        public async Task UpdateAsync<TEntity>(TEntity entity)
             where TEntity : class, IEntity
         {
-            DbContext.Update(entity);
-            return DbContext.SaveChangesAsync();
+            using var context = await _dbContextFactory.CreateDbContextAsync();
+            context.Update(entity);
+            await context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync<TEntity>(IEnumerable<TEntity> entities)
+        public async Task UpdateAsync<TEntity>(IEnumerable<TEntity> entities)
             where TEntity : class, IEntity
         {
-            DbContext.UpdateRange(entities);
-            return DbContext.SaveChangesAsync();
+            using var context = await _dbContextFactory.CreateDbContextAsync();
+            context.UpdateRange(entities);
+            await context.SaveChangesAsync();
         }
 
-        public Task InsertAsync<TEntity>(TEntity entity)
+        public async Task InsertAsync<TEntity>(TEntity entity)
             where TEntity : class, IEntity
         {
-            DbContext.Add(entity);
-            return DbContext.SaveChangesAsync();
+            using var context = await _dbContextFactory.CreateDbContextAsync();
+            await context.AddAsync(entity);
+            await context.SaveChangesAsync();
         }
 
-        public Task InsertAsync<TEntity>(IEnumerable<TEntity> entities)
+        public async Task InsertAsync<TEntity>(IEnumerable<TEntity> entities)
             where TEntity : class, IEntity
         {
-            DbContext.AddRange(entities);
-            return DbContext.SaveChangesAsync();
+            using var context = await _dbContextFactory.CreateDbContextAsync();
+            await context.AddRangeAsync(entities);
+            await context.SaveChangesAsync();
         }
     }
 }

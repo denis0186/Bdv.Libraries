@@ -16,8 +16,4 @@
 	  <ProjectReference Include="..\Bdv.Domain\Bdv.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="DependencyInjection\" />
-	</ItemGroup>
-
 </Project>
