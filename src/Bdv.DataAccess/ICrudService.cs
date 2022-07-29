@@ -12,6 +12,24 @@ namespace Bdv.DataAccess
         Task<IDbTransaction> BeginTransactionAsync();
 
         /// <summary>
+        /// Inserts entity 
+        /// </summary>
+        /// <typeparam name="TEntity">Type of entity</typeparam>
+        /// <param name="entity">Entity</param>
+        /// <returns></returns>
+        Task InsertAsync<TEntity>(TEntity entity)
+            where TEntity : class, IEntity;
+
+        /// <summary>
+        /// Inserts entities
+        /// </summary>
+        /// <typeparam name="TEntity">Type of entity</typeparam>
+        /// <param name="entities">Entity</param>
+        /// <returns></returns>
+        Task InsertAsync<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : class, IEntity;
+
+        /// <summary>
         /// Updates entity
         /// </summary>
         /// <typeparam name="TEntity">Type of entity</typeparam>

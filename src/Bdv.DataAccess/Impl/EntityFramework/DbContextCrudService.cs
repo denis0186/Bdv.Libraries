@@ -34,5 +34,19 @@ namespace Bdv.DataAccess.Impl.EntityFramework
             DbContext.UpdateRange(entities);
             return DbContext.SaveChangesAsync();
         }
+
+        public Task InsertAsync<TEntity>(TEntity entity)
+            where TEntity : class, IEntity
+        {
+            DbContext.Add(entity);
+            return DbContext.SaveChangesAsync();
+        }
+
+        public Task InsertAsync<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : class, IEntity
+        {
+            DbContext.AddRange(entities);
+            return DbContext.SaveChangesAsync();
+        }
     }
 }
