@@ -2,9 +2,9 @@
 
 namespace Bdv.Libraries.Tests.Integration
 {
-    public abstract class TestsBase : IDisposable
+    public abstract class IntegrationTestsBase : IDisposable
     {
-        protected TestsBase()
+        protected IntegrationTestsBase()
         {
             SetUp();
         }

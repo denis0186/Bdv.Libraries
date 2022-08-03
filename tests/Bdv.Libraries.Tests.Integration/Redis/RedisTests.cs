@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Bdv.Libraries.Tests.Integration.Redis
 {
-    public class RedisTests : TestsBase
+    public class RedisTests : IntegrationTestsBase
     {
         private IRedisRepository _redisRepository;
 
@@ -101,7 +101,7 @@ namespace Bdv.Libraries.Tests.Integration.Redis
         public async Task MultiplyIncrements(int count)
         {
             await _redisRepository.SetAsync("inc", 0d, TimeSpan.FromMinutes(1));
-            var tasks = Enumerable.Range(0, count).Select(i => _redisRepository.Incerement("inc")).ToArray();
+            var tasks = Enumerable.Range(0, count).Select(i => _redisRepository.IncerementAsync("inc")).ToArray();
             await Task.WhenAll(tasks);
             var result = await _redisRepository.GetAsync<double>("inc");
 
@@ -118,7 +118,7 @@ namespace Bdv.Libraries.Tests.Integration.Redis
         public async Task MultiplyDecrements(int count)
         {
             await _redisRepository.SetAsync("inc", count, TimeSpan.FromMinutes(1));
-            var tasks = Enumerable.Range(0, count).Select(i => _redisRepository.Decrement("inc")).ToArray();
+            var tasks = Enumerable.Range(0, count).Select(i => _redisRepository.DecrementAsync("inc")).ToArray();
             await Task.WhenAll(tasks);
             var result = await _redisRepository.GetAsync<double>("inc");
 

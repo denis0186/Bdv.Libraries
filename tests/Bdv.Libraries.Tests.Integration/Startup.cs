@@ -1,13 +1,13 @@
-﻿using Bdv.Redis;
+﻿using Bdv.DataAccess.DependencyInjection;
+using Bdv.Libraries.Tests.Integration.DataAccess.Entities;
+using Bdv.Libraries.Tests.Integration.DataAccess.EntityFramework;
+using Bdv.Redis;
 using Bdv.Redis.Impl;
+using FluentMigrator.Runner;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bdv.Libraries.Tests.Integration
 {
@@ -25,6 +25,13 @@ namespace Bdv.Libraries.Tests.Integration
             services.AddSingleton<IRedisSettings>(testsSettings);
             
             services.AddSingleton<IRedisRepository, RedisRepository>();
+            services.AddBdvDbContext<IntegrationTestsContext>(
+                options => options.UseNpgsql(hostBuilderContext.Configuration.GetConnectionString("tests")));
+
+            services.AddFluentMigratorCore()
+                .ConfigureRunner(options => options.AddPostgres()
+                .WithGlobalConnectionString(hostBuilderContext.Configuration.GetConnectionString("tests"))
+                .ScanIn(typeof(User).Assembly).For.Migrations());
         }
     }
 }

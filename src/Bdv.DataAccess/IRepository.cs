@@ -14,6 +14,7 @@ namespace Bdv.DataAccess
         Task<IEnumerable<TEntity>> GetAllAsync<TEntity>(Expression<Func<TEntity, bool>>? predicate = null)
             where TEntity : class, IEntity;
 
+
         /// <summary>
         /// Get list result by sql query
         /// </summary>
@@ -21,8 +22,8 @@ namespace Bdv.DataAccess
         /// <param name="sql">Sql query</param>
         /// <param name="param">Sql parameters</param>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetAllAsync<T>(string sql, params object[] param)
-            where T : class;
+        Task<IEnumerable<TEntity>> GetAllAsync<TEntity>(string sql, params object[] param)
+            where TEntity : class;
 
         /// <summary>
         /// Get entity using predicate
