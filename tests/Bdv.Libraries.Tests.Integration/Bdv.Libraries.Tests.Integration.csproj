@@ -43,8 +43,4 @@
     <ProjectReference Include="..\..\src\Bdv.Redis\Bdv.Redis.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataAccess\Models\" />
-  </ItemGroup>
-
 </Project>

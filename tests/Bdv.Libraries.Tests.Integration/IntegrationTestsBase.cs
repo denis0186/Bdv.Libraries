@@ -6,15 +6,12 @@ namespace Bdv.Libraries.Tests.Integration
     {
         protected IntegrationTestsBase()
         {
-            SetUp();
         }
 
         public void Dispose()
         {
             TearDown();
         }
-
-        protected abstract void SetUp();
 
         protected abstract void TearDown();
     }

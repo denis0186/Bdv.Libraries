@@ -1,4 +1,5 @@
 ﻿using Bdv.Libraries.Tests.Integration.DataAccess.Entities;
+using Bdv.Libraries.Tests.Integration.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bdv.Libraries.Tests.Integration.DataAccess.EntityFramework
@@ -20,6 +21,8 @@ namespace Bdv.Libraries.Tests.Integration.DataAccess.EntityFramework
 
             modelBuilder.Entity<User>().HasMany<Transaction>().WithOne().HasForeignKey(x => x.UserId);
             modelBuilder.Entity<Country>().HasMany<Transaction>().WithOne().HasForeignKey(x => x.CountryId);
+
+            modelBuilder.Entity<InformationSchemaTables>().HasNoKey();
         }
     }
 }

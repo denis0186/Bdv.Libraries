@@ -1,9 +1,6 @@
 ﻿using Bdv.Redis;
-using Bdv.Redis.Impl;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -18,13 +15,6 @@ namespace Bdv.Libraries.Tests.Integration.Redis
             _redisRepository = redisRepository;
         }
         
-        protected override void SetUp()
-        {
-        }
-
-        protected override void TearDown()
-        {
-        }
 
         [Fact]
         public async Task SetIntValue_GetIntValue()
@@ -124,6 +114,10 @@ namespace Bdv.Libraries.Tests.Integration.Redis
 
             Assert.Equal(0, result);
             Assert.Equal(count * (count - 1) / 2, tasks.Sum(x => x.Result));
+        }
+
+        protected override void TearDown()
+        {
         }
 
         struct TestStruct

@@ -50,5 +50,27 @@ namespace Bdv.DataAccess.Impl.EntityFramework
             await context.AddRangeAsync(entities);
             await context.SaveChangesAsync();
         }
+
+        public async Task DeleteAsync<TEntity>(TEntity entity)
+            where TEntity : class, IEntity
+        {
+            using var context = await _dbContextFactory.CreateDbContextAsync();
+            context.Remove(entity);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync<TEntity>(IEnumerable<TEntity> entities)
+            where TEntity : class, IEntity
+        {
+            using var context = await _dbContextFactory.CreateDbContextAsync();
+            context.RemoveRange(entities);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task ExecuteAsync(string sql)
+        {
+            using var context = await _dbContextFactory.CreateDbContextAsync();
+            await context.Database.ExecuteSqlRawAsync(sql);
+        }
     }
 }
